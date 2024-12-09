@@ -1,32 +1,88 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export const RegisterModule = () => { 
-    return (
-<div>
-<div className="registration-box">
-    <h1>Регистрация</h1>
-    <form>
-        <label for="first-name">Имя</label>
-        <input type="text" id="first-name" placeholder="Введите ваше имя" required></input>
+export const RegisterModule = () => {
+  const [firstName, setFirstname] = useState(undefined);
+  const [lastName, setLastname] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
 
-        <label for="last-name">Фамилия</label>
-        <input type="text" id="last-name" placeholder="Введите вашу фамилию" required></input>
+  const navigate = useNavigate()
 
-        <label for="email">Почта</label>
-        <input type="email" id="email" placeholder="Введите вашу почту" required></input>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const getData = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/api/auth/register/",
+          {
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+          }
+        );
+        console.log(res);
+        navigate("/")
+      } catch(e) {
+        alert(e.response.data.message)
+      }
+    };
+    getData();
+  };
 
-        <label for="password">Пароль</label>
-        <input type="password" id="password" placeholder="Введите ваш пароль" required></input>
+  return (
+    <div>
+      <div className="registration-box">
+        <h1>Регистрация</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="first-name">Имя</label>
+          <input
+            type="text"
+            id="first-name"
+            placeholder="Введите ваше имя"
+            value={firstName}
+            onChange={(e) => setFirstname(e.target.value)}
+            required
+          ></input>
 
-        <div class="remember-me">
-            <input type="checkbox" id="remember"></input>
-            <label for="remember">Запомнить меня</label>
-        </div>
+          <label htmlFor="last-name">Фамилия</label>
+          <input
+            type="text"
+            id="last-name"
+            placeholder="Введите вашу фамилию"
+            value={lastName}
+            onChange={(e) => setLastname(e.target.value)}
+            required
+          ></input>
 
-        <button type="submit">Создать аккаунт</button>
-        <p class="account-question">Есть аккаунт? <Link to="login">Создать</Link></p>
-    </form>
+          <label htmlFor="email">Почта</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Введите вашу почту"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          ></input>
+
+          <label htmlFor="password">Пароль</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Введите ваш пароль"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          ></input>
+
+          <button type="submit">Создать аккаунт</button>
+          <p className="account-question">
+            Есть аккаунт? <Link to="/">Войти</Link>
+          </p>
+        </form>
+      </div>
     </div>
-    </div>
-)
-}
+  );
+};
