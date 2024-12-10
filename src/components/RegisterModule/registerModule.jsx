@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { register } from "../api/authApi";
 
 export const RegisterModule = () => {
   const [firstName, setFirstname] = useState(undefined);
@@ -8,25 +9,16 @@ export const RegisterModule = () => {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const getData = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:5000/api/auth/register/",
-          {
-            email: email,
-            password: password,
-            first_name: firstName,
-            last_name: lastName,
-          }
-        );
-        console.log(res);
-        navigate("/")
-      } catch(e) {
-        alert(e.response.data.message)
+        await register(firstName, lastName, email, password);
+        navigate("/");
+      } catch (e) {
+        alert(e);
       }
     };
     getData();
