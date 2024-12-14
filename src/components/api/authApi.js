@@ -2,11 +2,10 @@ import { instance } from "../axios/instance";
 
 export const login = async (email, password) => {
     try {
-        const res = await instance.post("login/", {
+        const res = await instance.post("/auth/login/", {
             email: email,
             password: password
         });
-        console.log(res)
         if (res.status === 200) {
             const userData = await res.data
             return ({
@@ -27,7 +26,7 @@ export const login = async (email, password) => {
 
 export const register = async (firstName, lastName, email, password) => {
     try {
-        const res = await instance.post("register/", {
+        const res = await instance.post("/auth/register/", {
             first_name: firstName,
             last_name: lastName,
             email: email,
@@ -49,4 +48,13 @@ export const register = async (firstName, lastName, email, password) => {
 export const logout = async () => {
     localStorage.removeItem("user")
     sessionStorage.removeItem("user")
+}
+export const GetProfile = async (token) => {
+    const res = await instance.get("users/profile", { headers: {"Authorization" : `Bearer ${token}`} })
+    if (res.status === 200) {
+        const userdata = await res.data
+        return(
+            userdata
+        )
+    }
 }

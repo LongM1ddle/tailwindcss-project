@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/auth";
 import { instance } from "../axios/instance";
 import { login } from "../api/authApi";
+import "../../app.css"
 
 export const LoginModule = () => {
   const { setAuth, setToken, setEmail, setName } = useAuth();
@@ -36,7 +37,7 @@ export const LoginModule = () => {
     getData();
   };
   return (
-    <div>
+    <div className="registration-box-container">
       <div className="registration-box">
         <h1>Вход в аккаунт</h1>
         <form onSubmit={handleSubmit}>

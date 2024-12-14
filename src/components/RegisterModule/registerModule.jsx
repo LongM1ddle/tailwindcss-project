@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { register } from "../api/authApi";
+import "../../app.css"
 
 export const RegisterModule = () => {
   const [firstName, setFirstname] = useState(undefined);
@@ -25,7 +26,7 @@ export const RegisterModule = () => {
   };
 
   return (
-    <div>
+    <div className="registration-box-container">
       <div className="registration-box">
         <h1>Регистрация</h1>
         <form onSubmit={handleSubmit}>
