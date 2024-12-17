@@ -28,7 +28,7 @@ body {
     align-items: center;
 
     color: #F1E8E8;
-    background-image: url(assets/profile-background.svg);
+    background-image: url(../../assets/profile-background.svg);
     background-size: cover;
     border-radius: 0px 0px 15px 15px;
     font-family: Roboto;

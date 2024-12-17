@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/auth";
 import { useEffect, useState } from "react";
 import { GetProfile, logout } from "../api/authApi";
-import "../../profile.css"
+import "./profile.css"
 import { Header } from "../header/header";
 import main_pfp from "../../assets/main-user-pfp.svg"
 import img_before from "../../assets/before.jpg"

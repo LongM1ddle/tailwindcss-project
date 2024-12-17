@@ -14,10 +14,10 @@ export const Header = () => {
     <div className="header">
       <h2>UniWorkout</h2>
       <div className="header-buttons">
-        <Link>
+        <Link to="/workout">
           <img className="header-button" src={dumbell}></img>
         </Link>
-        <Link>
+        <Link >
           <img className="header-button" src={pfp}></img>
         </Link>
         <Link>

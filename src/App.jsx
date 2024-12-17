@@ -5,6 +5,7 @@ import { LoginModule } from "./components/loginModule/LoginModule";
 import { Profile } from "./components/profile/profile";
 import { useState, useEffect } from "react";
 import { useAuth } from "./components/auth/auth";
+import { WorkoutPage } from "./components/workout/workout";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<RegisterModule />}></Route>
         <Route path="/" element={<LoginModule />}></Route>
         <Route path="profile" element={<Profile />}></Route>
+        <Route path="workout" element={<WorkoutPage />}></Route>
       </Routes>
     </>
   );
