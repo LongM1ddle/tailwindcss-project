@@ -1,14 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { register } from "../api/authApi";
-import "../../app.css"
 
 export const RegisterModule = () => {
-  const [firstName, setFirstname] = useState(undefined);
-  const [lastName, setLastname] = useState(undefined);
-  const [email, setEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
+  const [firstName, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,53 +24,97 @@ export const RegisterModule = () => {
   };
 
   return (
-    <div className="registration-box-container">
-      <div className="registration-box">
-        <h1>Регистрация</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="first-name">Имя</label>
-          <input
-            type="text"
-            id="first-name"
-            placeholder="Введите ваше имя"
-            value={firstName}
-            onChange={(e) => setFirstname(e.target.value)}
-            required
-          ></input>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Регистрация</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label
+              htmlFor="first-name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Имя
+            </label>
+            <input
+              type="text"
+              id="first-name"
+              placeholder="Введите ваше имя"
+              value={firstName}
+              onChange={(e) => setFirstname(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
+          </div>
 
-          <label htmlFor="last-name">Фамилия</label>
-          <input
-            type="text"
-            id="last-name"
-            placeholder="Введите вашу фамилию"
-            value={lastName}
-            onChange={(e) => setLastname(e.target.value)}
-            required
-          ></input>
+          <div>
+            <label
+              htmlFor="last-name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Фамилия
+            </label>
+            <input
+              type="text"
+              id="last-name"
+              placeholder="Введите вашу фамилию"
+              value={lastName}
+              onChange={(e) => setLastname(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
+          </div>
 
-          <label htmlFor="email">Почта</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Введите вашу почту"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          ></input>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Почта
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Введите вашу почту"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
+          </div>
 
-          <label htmlFor="password">Пароль</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Введите ваш пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          ></input>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Пароль
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Введите ваш пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
+          </div>
 
-          <button type="submit">Создать аккаунт</button>
-          <p className="account-question">
-            Есть аккаунт? <Link to="/">Войти</Link>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+          >
+            Создать аккаунт
+          </button>
+
+          <p className="text-sm text-center text-gray-600 mt-4">
+            Есть аккаунт?{" "}
+            <Link
+              to="/"
+              className="text-indigo-600 hover:underline"
+            >
+              Войти
+            </Link>
           </p>
         </form>
       </div>

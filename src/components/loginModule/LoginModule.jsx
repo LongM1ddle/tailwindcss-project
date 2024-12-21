@@ -1,15 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/auth";
-import { instance } from "../axios/instance";
 import { login } from "../api/authApi";
-import "../../app.css"
 
 export const LoginModule = () => {
   const { setAuth, setToken, setEmail, setName } = useAuth();
-  const [email, setInputEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
+  const [email, setInputEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isRememberLogin, setRememberLogin] = useState(false);
   const navigate = useNavigate();
 
@@ -36,43 +33,77 @@ export const LoginModule = () => {
     };
     getData();
   };
+
   return (
-    <div className="registration-box-container">
-      <div className="registration-box">
-        <h1>Вход в аккаунт</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Почта</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Введите вашу почту"
-            value={email}
-            onChange={(e) => setInputEmail(e.target.value)}
-            required
-          ></input>
-
-          <label htmlFor="password">Пароль</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Введите ваш пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          ></input>
-
-          <div className="remember-me">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
+          Вход в аккаунт
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Почта
+            </label>
             <input
-              type="checkbox"
-              onChange={(e) => setRememberLogin(e.target.checked)}
-              id="remember"
-            ></input>
-            <label htmlFor="remember">Запомнить меня</label>
+              type="email"
+              id="email"
+              placeholder="Введите вашу почту"
+              value={email}
+              onChange={(e) => setInputEmail(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
           </div>
 
-          <button type="submit">Войти</button>
-          <p className="account-question">
-            Нет аккаунта? <Link to="register">Создать</Link>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Пароль
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Введите ваш пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 block w-full px-3 py-2 border border-blue-500 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-gray-100"
+            />
+          </div>
+
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="remember"
+              onChange={(e) => setRememberLogin(e.target.checked)}
+              className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+            <label
+              htmlFor="remember"
+              className="ml-2 block text-sm text-gray-700"
+            >
+              Запомнить меня
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+          >
+            Войти
+          </button>
+
+          <p className="text-sm text-center text-gray-600 mt-4">
+            Нет аккаунта?{" "}
+            <Link to="register" className="text-indigo-600 hover:underline">
+              Создать
+            </Link>
           </p>
         </form>
       </div>
